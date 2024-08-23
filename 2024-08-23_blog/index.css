@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+}
+
+#header {
+  border-bottom: 1px solid black;
+  padding: 20px 0;
+  text-align: center;
+  font-weight: 900;
+  font-size: 21px;
+}
+
+.container {
+  display: flex;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1024px;
+  column-gap: 20px;
+}
+
+#sidebar {
+  background-color: rgb(245, 245, 222);
+  width: 160px;
+  padding: 20px;
+}
+
+#sidebar-nav {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#sidebar-nav a {
+  text-decoration: none;
+  color: black;
+}
+
+#sidebar-nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#sidebar-nav ul li + li {
+  margin-top: 8px;
+}
+
+#sidebar-visitors-count {
+  font-size: 14px;
+  list-style: none;
+  padding-left: 0;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+#content {
+  background-color: rgb(248, 235, 217);
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.article {
+  background-color: white;
+  padding: 60px 40px 50px;
+}
+
+.article + .article {
+  margin-top: 20px;
+}
+
+.article-header {
+  margin-bottom: 40px;
+}
+
+.article-title {
+  font-size: 32px;
+}
+
+.article-content > img {
+  width: 400px;
+  margin: 0 auto;
+  display: block;
+}
+
+.article-hr {
+  border-bottom: 1px solid black;
+  margin: 40px 0 60px;
+}
+
+.article-comment-input {
+  width: 100%;
+  height: 144px;
+}
+
+.article-comment-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.article-comment-submit-button {
+  align-self: flex-end;
+}
