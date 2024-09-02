@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+
+  header {
+    h1 {
+      color: blue;
+    }
+  }
+
+  article {
+    h2 {
+      color: purple;
+    }
+
+    section {
+      background-color: red;
+
+      &:nth-of-type(1) {
+        background-color: gray;
+      }
+    }
+  }
+}
