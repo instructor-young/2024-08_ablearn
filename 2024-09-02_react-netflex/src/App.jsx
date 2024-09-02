@@ -5,9 +5,8 @@ import MoviesList from "./components/MoviesList/MoviesList";
 function App() {
   return (
     <div className={styles.app}>
-      <Header />
-
       <main>
+        <Header />
         <MoviesList title="현재 상영작" />
         <MoviesList title="평점이 높은 영화" />
       </main>
