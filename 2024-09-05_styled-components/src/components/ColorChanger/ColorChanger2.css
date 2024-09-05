@@ -1,0 +1,35 @@
+.text-default {
+  font-size: 20px;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.red {
+  color: red;
+  border-color: red;
+}
+
+.blue {
+  color: blue;
+  border-color: blue;
+}
+
+.yellow {
+  color: yellow;
+  border-color: yellow;
+}
+
+.orange {
+  color: orange;
+  border-color: orange;
+}
+
+.purple {
+  color: purple;
+  border-color: purple;
+}
+
+.black {
+  color: black;
+  border-color: black;
+}

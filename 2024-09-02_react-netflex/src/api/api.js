@@ -16,3 +16,11 @@ export const getMoviesOnCategory = async (category) => {
 
   return movies;
 };
+
+export const getMovie = async (movieId) => {
+  const url = `/3/movie/${movieId}?language=ko-KR`;
+  const response = await tmdbClient.get(url);
+  const movie = response.data;
+
+  return movie;
+};
