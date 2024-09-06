@@ -1,7 +1,5 @@
-import styles from "./Page.module.scss";
-
 function Page({ children }) {
-  return <main className={styles.page}>{children}</main>;
+  return <main className="p-10 grow relative">{children}</main>;
 }
 
 export default Page;

@@ -111,7 +111,11 @@ button {
   gap: 2px;
 }
 
-#main-controls-left > button {
+#main-controls-left > button.control {
+  background-color: rgb(104, 99, 95);
+}
+
+#main-controls-left > button.number {
   background-color: rgb(113, 113, 111);
 }
 

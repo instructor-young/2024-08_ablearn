@@ -1,19 +1,18 @@
 import { Link } from "react-router-dom";
-import styles from "./MovieCard.module.scss";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 function MovieCard({ movie }) {
   return (
-    <Link to={`/movies/${movie.id}`} className={styles.movie}>
+    <Link to={`/movies/${movie.id}`} className="no-underline">
       {/* 영화 이미지 */}
       <img
         src={IMAGE_BASE_URL + movie.backdrop_path}
-        className={styles.thumbnail}
+        className="w-full bg-white"
       />
 
       {/* 영화 제목 */}
-      <h6 className={styles.title}>{movie.title}</h6>
+      <h6 className="font-bold text-xl mb-0 mt-4">{movie.title}</h6>
     </Link>
   );
 }
