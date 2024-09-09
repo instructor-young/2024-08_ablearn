@@ -1,7 +1,8 @@
 import Page from "../../components/Page/Page";
+import { useMovies } from "../../contexts/movies.context";
 
-function MyPage(props) {
-  const { likedMovieIds, toggleLikeMovie } = props;
+function MyPage() {
+  const { likedMovieIds, toggleLikeMovie } = useMovies();
 
   return (
     <Page>

@@ -4,11 +4,12 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMovie } from "../../api/api";
 import Page from "../../components/Page/Page";
+import { useMovies } from "../../contexts/movies.context";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
-function MovieDetailPage(props) {
-  const { checkIsLiked, toggleLikeMovie } = props;
+function MovieDetailPage() {
+  const { checkIsLiked, toggleLikeMovie } = useMovies();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const isLiked = checkIsLiked(movieId);

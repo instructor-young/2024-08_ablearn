@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Page from "../../components/Page/Page";
+import { useAuth } from "../../contexts/auth.context";
 
-function LogInPage(props) {
-  const { logIn } = props;
+function LogInPage() {
+  const { logIn } = useAuth();
   const navigate = useNavigate();
   const [id, setID] = useState("");
   const [password, setPassword] = useState("");

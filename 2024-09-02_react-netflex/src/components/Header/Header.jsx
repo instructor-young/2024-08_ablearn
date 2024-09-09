@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/auth.context";
 
-function Header({ currentUser }) {
+function Header() {
+  const { currentUser } = useAuth();
+
   return (
     <header className="flex sticky top-0 px-10 py-8 backdrop-blur-sm justify-between">
       <Link className="text-3xl font-bold no-underline text-red-500" to="/">
