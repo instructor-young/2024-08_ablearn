@@ -1,8 +1,7 @@
 import Page from "../../components/Page/Page";
-import { useMovies } from "../../contexts/movies.context";
 
 function MyPage() {
-  const { likedMovieIds, toggleLikeMovie } = useMovies();
+  // const { likedMovieIds, toggleLikeMovie } = useMovies();
 
   return (
     <Page>
@@ -11,14 +10,14 @@ function MyPage() {
       <section>
         <h2>내가 좋아하는 영화들</h2>
         <ul>
-          {likedMovieIds.map((movieId) => (
+          {/* {likedMovieIds.map((movieId) => (
             <li key={movieId}>
               <span>영화 {movieId}</span>
               <button onClick={() => toggleLikeMovie(movieId)}>
                 좋아요 취소
               </button>
             </li>
-          ))}
+          ))} */}
         </ul>
       </section>
     </Page>

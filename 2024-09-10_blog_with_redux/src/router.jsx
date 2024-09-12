@@ -3,6 +3,7 @@ import RootLayout from "./layouts/RootLayout";
 import HomePage from "./pages/HomePage";
 import PostCreatePage from "./pages/PostCreatePage";
 import PostDetailPage from "./pages/PostDetailPage";
+import PostEditPage from "./pages/PostEditPage";
 
 const routes = [
   {
@@ -11,6 +12,7 @@ const routes = [
     children: [
       { path: "", element: <HomePage /> },
       { path: "posts/:postId", element: <PostDetailPage /> },
+      { path: "posts/:postId/edit", element: <PostEditPage /> },
       { path: "posts/create", element: <PostCreatePage /> },
     ],
   },

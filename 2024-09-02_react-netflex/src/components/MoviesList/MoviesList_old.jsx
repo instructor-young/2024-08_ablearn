@@ -1,13 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { getMoviesOnCategory } from "../../api/api";
 import MovieCard from "../MovieCard/MovieCard";
 
 function MoviesList({ title, category }) {
-  const { data: moviesOnCategory } = useQuery({
-    initialData: [],
-    queryKey: ["movies", { category }],
-    queryFn: () => getMoviesOnCategory(category),
-  });
+  const [moviesOnCategory, setMoviesOnCategory] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const movies = await getMoviesOnCategory(category);
+      setMoviesOnCategory(movies);
+    })();
+  }, [category]);
 
   return (
     <section className="[&+&]:mt-16">

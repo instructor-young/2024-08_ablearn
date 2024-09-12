@@ -2,7 +2,7 @@ import { useId, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Page from "../components/Page";
-import { createPost } from "../redux/reducers/postsReducer";
+import { createPost } from "../redux/slices/postsSlice";
 
 function PostCreatePage() {
   const titleId = useId();

@@ -1,26 +1,19 @@
-import { FaHeart, FaPlay } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getMovie } from "../../api/api";
+import LikeMovieButton from "../../components/LikeMovieButton/LikeMovieButton";
 import Page from "../../components/Page/Page";
-import { useMovies } from "../../contexts/movies.context";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 function MovieDetailPage() {
-  const { checkIsLiked, toggleLikeMovie } = useMovies();
   const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
-  const isLiked = checkIsLiked(movieId);
-
-  const handleClickLikeButton = () => {
-    toggleLikeMovie(movieId);
-  };
-
-  useEffect(() => {
-    getMovie(movieId).then((movie) => setMovie(movie));
-  }, [movieId]);
+  const { data: movie } = useQuery({
+    queryKey: ["movies", { id: movieId }],
+    queryFn: () => getMovie(movieId),
+  });
 
   if (!movie) return null;
 
@@ -70,14 +63,7 @@ function MovieDetailPage() {
                 <FaPlay />
               </button>
 
-              <button
-                onClick={handleClickLikeButton}
-                className={`border-white/20 p-4 rounded-full border-2 bg-white/20 ${
-                  isLiked ? "text-red-500" : "text-white/70"
-                } active:brightness-50 transition`}
-              >
-                <FaHeart className="text-4xl transition" />
-              </button>
+              <LikeMovieButton movieId={movieId} />
             </div>
           </div>
 
