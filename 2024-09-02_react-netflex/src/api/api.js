@@ -10,6 +10,8 @@ const tmdbClient = axios.create({
 
 const jsonClient = axios.create({ baseURL: "http://localhost:3000" });
 
+fetch();
+
 export const getMoviesOnCategory = async (category) => {
   const url = `/3/movie/${category}?language=ko-KR&page=1`;
   const response = await tmdbClient.get(url);
