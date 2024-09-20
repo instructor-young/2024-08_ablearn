@@ -1,12 +1,7 @@
-import { cva } from "class-variance-authority";
-import React, { PropsWithChildren } from "react";
+import { cva, VariantProps } from "class-variance-authority";
+import { ComponentProps, PropsWithChildren } from "react";
 
-interface ButtonProps {
-  size?: "sm" | "md" | "lg";
-  intent?: "danger" | "warning" | "primary" | "secondary";
-  outline?: boolean;
-  rounded?: "normal" | "pill";
-}
+type ButtonProps = ButtonVariantsType & ComponentProps<"button">;
 
 const buttonVariants = cva(
   "transition hover:brightness-90 active:brightness-75",
@@ -15,7 +10,7 @@ const buttonVariants = cva(
       size: {
         sm: "text-xs px-1.5 py-0.5 font-medium",
         md: "text-[15px] px-2.5 py-1 font-semibold",
-        lg: "",
+        lg: "text-[17px] px-3.5 py-2 font-bold",
       },
       intent: {
         danger: "bg-red-500",
@@ -24,15 +19,36 @@ const buttonVariants = cva(
         secondary: "bg-gray-400",
       },
       outline: {
-        true: "",
+        true: "border",
         false: "text-white",
       },
       rounded: {
         normal: "rounded-md",
-        pill: "",
+        pill: "rounded-full",
       },
     },
-    compoundVariants: [],
+    compoundVariants: [
+      {
+        outline: true,
+        intent: "primary",
+        className: "bg-white text-sky-500 border-sky-500",
+      },
+      {
+        outline: true,
+        intent: "secondary",
+        className: "bg-white text-gray-500 border-gray-500",
+      },
+      {
+        outline: true,
+        intent: "warning",
+        className: "bg-white text-yellow-500 border-yellow-500",
+      },
+      {
+        outline: true,
+        intent: "danger",
+        className: "bg-white text-red-500 border-red-500",
+      },
+    ],
     defaultVariants: {
       size: "md",
       intent: "primary",
@@ -42,15 +58,22 @@ const buttonVariants = cva(
   }
 );
 
+type ButtonVariantsType = VariantProps<typeof buttonVariants>;
+
 function Button({
   size,
   intent,
   outline,
   rounded,
   children,
+  className,
+  ...props
 }: PropsWithChildren<ButtonProps>) {
   return (
-    <button className={buttonVariants({ size, intent, outline, rounded })}>
+    <button
+      className={buttonVariants({ className, size, intent, outline, rounded })}
+      {...props}
+    >
       {children}
     </button>
   );
