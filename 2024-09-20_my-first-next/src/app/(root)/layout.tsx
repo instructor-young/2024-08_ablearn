@@ -6,7 +6,9 @@ function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <div>
       <Header />
-      {children}
+      <div className="bg-white">
+        <main className="container mx-auto px-4 py-8">{children}</main>
+      </div>
       <Footer />
     </div>
   );

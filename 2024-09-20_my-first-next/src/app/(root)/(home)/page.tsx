@@ -1,42 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { Breeds } from "@/types/cats-api-types";
-import Link from "next/link";
+import { CatImage } from "@/types/cats-api-types";
+const fetchOptions = {
+  headers: {
+    "x-api-key":
+      "live_2c3ifk5TO4g2CAqWYGOAH6RchwhQFf3eaJQIDtvLaNLMAtsn6m1hqrD7Kn8hDYbg",
+  },
+};
 
 async function HomePage() {
-  const response = await fetch("https://api.thecatapi.com/v1/breeds", {
-    headers: {
-      "x-api-key":
-        "live_2c3ifk5TO4g2CAqWYGOAH6RchwhQFf3eaJQIDtvLaNLMAtsn6m1hqrD7Kn8hDYbg",
-    },
-  });
+  const response = await fetch(
+    `https://api.thecatapi.com/v1/images/search`,
+    fetchOptions
+  );
 
-  const breeds = (await response.json()) as Breeds;
+  const [image] = (await response.json()) as [CatImage];
 
   return (
-    <div>
-      <ul>
-        {breeds.map((breed) => (
-          <li key={breed.id}>
-            <article className="border">
-              <h2 className="font-bold text-lg">
-                <Link
-                  className="text-blue-500 underline"
-                  href={`/cats/${breed.id}`}
-                >
-                  {breed.name}
-                </Link>
-              </h2>
-              <p className="text-sm">
-                <a href={breed.wikipedia_url} target="_blank">
-                  {breed.description}
-                </a>
-              </p>
-            </article>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <h1 className="text-center font-bold text-4xl mb-8">오늘의 고양이!</h1>
+
+      <div className="container max-w-screen-sm mx-auto flex flex-col items-center justify-center">
+        <img src={image.url} alt={image.id} />
+      </div>
+    </>
   );
 }
 
