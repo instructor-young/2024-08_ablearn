@@ -2,8 +2,12 @@ import { NewPostData, Post } from "@/schemas/posts.schema";
 
 export async function getPosts() {
   try {
-    const response = await fetch("http://localhost:3000/api/posts");
-    const posts = (await response.json()) as Post[];
+    const response = await fetch("http://localhost:3000/api/posts", {
+      cache: "no-cache",
+    });
+    const posts = (await response
+      .json()
+      .then((data) => JSON.parse(data))) as Post[];
 
     return posts;
   } catch (e) {
