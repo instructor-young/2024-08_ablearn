@@ -1,41 +1,39 @@
+import { getPost } from "@/api/posts.api";
 import Page from "@/components/Page";
-import { Post } from "@/schemas/posts.schema";
 import Link from "next/link";
 import React from "react";
 
 async function PostDetailPage(props: { params: { postId: string } }) {
-  const { postId } = props.params;
+  const postId = Number(props.params.postId);
+  const postPromise = getPost(postId);
 
-  const response = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${postId}`
-  );
-  const post = (await response.json()) as Post;
-
-  let prevPost;
-  if (+postId > 1 && +postId <= 100) {
-    const prevPostId = Number(postId) - 1;
-    const prevPostResponse = await fetch(
-      `https://jsonplaceholder.typicode.com/posts/${prevPostId}`
-    );
-    prevPost = (await prevPostResponse.json()) as Post;
+  let prevPostPromise;
+  if (postId > 1 && postId <= 100) {
+    const prevPostId = postId - 1;
+    prevPostPromise = getPost(prevPostId);
   }
 
-  let nextPost;
-  if (+postId >= 1 && +postId < 100) {
-    const nextPostId = Number(postId) + 1;
-    const nextPostResponse = await fetch(
-      `https://jsonplaceholder.typicode.com/posts/${nextPostId}`
-    );
-    nextPost = (await nextPostResponse.json()) as Post;
+  let nextPostPromise;
+  if (postId >= 1 && postId < 100) {
+    const nextPostId = postId + 1;
+    nextPostPromise = getPost(nextPostId);
   }
+
+  const [post, prevPost, nextPost] = await Promise.all([
+    postPromise,
+    prevPostPromise,
+    nextPostPromise,
+  ]);
+
+  if (!post) return <strong>포스트를 불러오는 데 실패했습니다.</strong>;
 
   return (
     <Page title={post.title}>
       <div className="mb-4">
         <span>Author Id : </span>
-        <span>{post.userId}</span>
+        <span>{post.authorName}</span>
       </div>
-      <p>{post.body}</p>
+      <p>{post.content}</p>
 
       <section className="mt-10 border-t border-black py-5">
         <ul className="grid grid-cols-2">
