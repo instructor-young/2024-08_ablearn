@@ -33,7 +33,7 @@ async function PostDetailPage(props: { params: { postId: string } }) {
         <span>Author Id : </span>
         <span>{post.authorName}</span>
       </div>
-      <p>{post.content}</p>
+      <p className="whitespace-pre-line">{post.content}</p>
 
       <section className="mt-10 border-t border-black py-5">
         <ul className="grid grid-cols-2">

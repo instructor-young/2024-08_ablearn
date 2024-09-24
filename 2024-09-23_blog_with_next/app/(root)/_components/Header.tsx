@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import HeaderAuthMenu from "./HeaderAuthMenu";
 
 function Header() {
   return (
@@ -12,22 +13,13 @@ function Header() {
         <ul>
           <li>
             <Link className="transition" href={"/posts/new"}>
-              글 작성하기
+              글 쓰기
             </Link>
           </li>
         </ul>
       </nav>
 
-      <div className="ml-auto">
-        <ul className="flex gap-x-4">
-          <li>
-            <Link href={"/log-in"}>로그인</Link>
-          </li>
-          <li>
-            <Link href={"/sign-up"}>회원가입</Link>
-          </li>
-        </ul>
-      </div>
+      <HeaderAuthMenu />
     </header>
   );
 }

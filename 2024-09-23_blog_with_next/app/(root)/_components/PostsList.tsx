@@ -17,11 +17,11 @@ function PostsList({ posts: initialPosts }: PostsListProps) {
   }, []);
 
   return (
-    <ul className="grid grid-cols-1 gap-y-4">
+    <ul className="grid grid-cols-1 gap-y-4 list-disc list-inside">
       {posts.map((post) => (
         <li key={post.id}>
           <Link
-            className="hover:text-orange-500 active:brightness-75 transition"
+            className="hover:text-orange-500 active:brightness-75 transition text-xl py-4"
             href={`/posts/${post.id}`}
           >
             {post.title}

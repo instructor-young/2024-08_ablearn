@@ -12,6 +12,11 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  const key = request.headers.get("Authorization");
+  const isKeyValid = Number(key) % 1024 === 1000;
+
+  if (!isKeyValid) return NextResponse.json("위조 여권임", { status: 400 });
+
   const data = (await request.json()) as NewPostData;
   const post = {
     id: Date.now(),

@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Textarea from "@/components/Textarea";
 import { NewPostData } from "@/schemas/posts.schema";
+import { useAuthStore } from "@/zustand/auth.store";
 import { useRouter } from "next/navigation";
 import React, { ComponentProps, useState } from "react";
 
@@ -13,6 +14,7 @@ function NewPostForm() {
   const [authorName, setAuthorName] = useState("");
   const [content, setContent] = useState("");
   const router = useRouter();
+  const currentUser = useAuthStore((state) => state.currentUser);
 
   const handleChangeTitle: ComponentProps<"input">["onChange"] = (e) => {
     const inputValue = e.target.value;
@@ -32,7 +34,7 @@ function NewPostForm() {
   };
   const handleChangeContent: ComponentProps<"textarea">["onChange"] = (e) => {
     const inputValue = e.target.value;
-    if (inputValue.length > 500) return;
+    if (inputValue.length > 5000) return;
 
     setContent(inputValue);
   };
@@ -45,7 +47,7 @@ function NewPostForm() {
 
     // 이제 서버로 내용 보내면 끝 + 홈으로 이동하기
     const newPostData: NewPostData = { title, authorName, content };
-    const newPost = await createPost(newPostData);
+    const newPost = await createPost(newPostData, currentUser);
 
     if (!newPost) return alert("포스트가 생성되지 않았습니다.");
 
@@ -79,7 +81,7 @@ function NewPostForm() {
       {/* 내용 */}
       <Textarea
         label="글 내용"
-        helpText="최대 500자까지 작성할 수 있습니다."
+        helpText="최대 5000자까지 작성할 수 있습니다."
         rows={12}
         value={content}
         onChange={handleChangeContent}

@@ -1,3 +1,4 @@
+import { CurrentUser } from "@/schemas/auth.schema";
 import { NewPostData, Post } from "@/schemas/posts.schema";
 
 export async function getPosts() {
@@ -26,11 +27,17 @@ export async function getPost(postId: number) {
   }
 }
 
-export async function createPost(newPostData: NewPostData) {
+export async function createPost(
+  newPostData: NewPostData,
+  currentUser: CurrentUser
+) {
+  if (!currentUser) return;
+
   try {
     const response = await fetch("http://localhost:3000/api/posts", {
       method: "POST",
       body: JSON.stringify(newPostData),
+      headers: { Authorization: String(1727163485000) },
     });
     const newPost = (await response.json()) as Post;
 

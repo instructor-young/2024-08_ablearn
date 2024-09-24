@@ -8,7 +8,7 @@ async function HomePage() {
   if (!posts) return <strong>포스트 목록을 불러오는 데 실패했습니다.</strong>;
 
   return (
-    <Page title="All Posts">
+    <Page title="전체 글">
       <PostsList posts={posts} />
     </Page>
   );
