@@ -10,22 +10,22 @@ function ImageUploaderPage() {
     if (!files) return;
 
     const formData = new FormData();
-    formData.append("img", files[0]);
+    Array.from(files).forEach((file) => formData.append("img", file));
 
     const response = await fetch("http://localhost:3000/api/images", {
       method: "POST",
       body: formData,
     });
-    const imgUrl = await response.json();
+    const imgUrls = await response.json();
 
-    setImgUrls((prev) => [imgUrl, ...prev]);
+    setImgUrls((prev) => [...imgUrls, ...prev]);
   };
 
   return (
     <div>
       <h1 className="text-3xl">이미지 업로더</h1>
 
-      <input onChange={handleChangeImage} type="file" />
+      <input onChange={handleChangeImage} type="file" multiple />
 
       <hr />
 
