@@ -4,15 +4,19 @@ import React from "react";
 import supabase from "@/supabase/client";
 import { Database } from "../../../../../../../database.types";
 import studentsAPI from "@/api/students.api";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 function NewStudentForm() {
+  const queryClient = useQueryClient();
+
   const { mutate: addStudent } = useMutation<
     unknown,
     Error,
     Database["public"]["Tables"]["students"]["Insert"]
   >({
     mutationFn: (data) => studentsAPI.addStudent(data),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ["students"], exact: true }),
   });
 
   const handleSubmitAddStudent = async (e: any) => {

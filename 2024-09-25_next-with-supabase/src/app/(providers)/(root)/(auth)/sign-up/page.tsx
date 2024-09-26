@@ -17,9 +17,25 @@ function SignUpPage() {
     console.log(result);
   };
 
+  const handleClickLogInWithKakao = async () => {
+    const response = await supabase.auth.signInWithOAuth({ provider: "kakao" });
+    console.log(response);
+  };
+
   return (
     <div>
       <h1>회원가입하기</h1>
+
+      <hr />
+
+      <button
+        onClick={handleClickLogInWithKakao}
+        className="bg-yellow-300 text-black font-bold px-5 py-2"
+      >
+        카카오로 로그인하기
+      </button>
+
+      <hr />
 
       <input
         placeholder="이메일"

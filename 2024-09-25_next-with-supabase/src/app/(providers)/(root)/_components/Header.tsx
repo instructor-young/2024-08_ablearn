@@ -23,7 +23,10 @@ function Header() {
       {isAuthInitialized ? (
         <div className="ml-auto">
           {isLoggedIn ? (
-            <button onClick={handleClickLogOut}>로그아웃</button>
+            <>
+              <Link href={"/profile"}>프로필 관리</Link> |
+              <button onClick={handleClickLogOut}>로그아웃</button>
+            </>
           ) : (
             <>
               <Link href={"/log-in"}>로그인</Link> |{" "}
