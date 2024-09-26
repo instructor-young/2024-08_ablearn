@@ -13,7 +13,7 @@ function Header() {
   };
 
   return (
-    <header className="border-b h-16 flex items-center justify-center px-5">
+    <header className="border-b h-16 flex items-center px-5">
       <Link href={"/"} className="text-2xl font-bold">
         투두2
       </Link>
