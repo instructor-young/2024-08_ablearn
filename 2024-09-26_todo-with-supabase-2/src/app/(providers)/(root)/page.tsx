@@ -21,7 +21,10 @@ function HomePage() {
   return (
     <div>
       <NewTodoForm setTodosRefetchCount={setTodosRefetchCount} />
-      <TodosList todosRefetchCount={todosRefetchCount} />
+      <TodosList
+        todosRefetchCount={todosRefetchCount}
+        setTodosRefetchCount={setTodosRefetchCount}
+      />
     </div>
   );
 }
