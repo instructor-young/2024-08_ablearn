@@ -1,6 +1,10 @@
 import { Todo } from "@/schema/todos.schema";
 import supabase from "@/supabase/supabase.client";
 
+async function createTodo(content: string) {
+  await supabase.from("todos").insert({ content });
+}
+
 async function getTodos() {
   const response = await supabase.from("todos").select("*");
   const todos = response.data;
@@ -22,6 +26,7 @@ async function deleteTodo(todo: Todo) {
 }
 
 const todosAPI = {
+  createTodo,
   getTodos,
   toggleIsCompleted,
   deleteTodo,

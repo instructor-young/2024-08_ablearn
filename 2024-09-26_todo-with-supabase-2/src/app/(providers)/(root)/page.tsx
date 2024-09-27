@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import NewTodoForm from "./_components/NewTodoForm";
-import TodosList from "./_components/TodosList";
+import { useEffect } from "react";
+import NewTodoForm from "./_components/NewTodoForm/NewTodoForm";
+import TodosList from "./_components/TodosList/TodosList";
 import { useAuth } from "@/contexts/auth.context";
 import { useRouter } from "next/navigation";
 
 function HomePage() {
-  const [todosRefetchCount, setTodosRefetchCount] = useState(0);
   const { isAuthInitialized, isLoggedIn } = useAuth();
   const router = useRouter();
 
@@ -20,11 +19,8 @@ function HomePage() {
 
   return (
     <div>
-      <NewTodoForm setTodosRefetchCount={setTodosRefetchCount} />
-      <TodosList
-        todosRefetchCount={todosRefetchCount}
-        setTodosRefetchCount={setTodosRefetchCount}
-      />
+      <NewTodoForm />
+      <TodosList />
     </div>
   );
 }

@@ -1,6 +1,5 @@
-import Link from "next/link";
-import React, { useEffect } from "react";
-import Header from "./_components/Header";
+import React from "react";
+import Header from "./_components/Header/Header";
 
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
