@@ -13,7 +13,11 @@ function Page({ title, fullWidth, children }: PropsWithChildren<PageProps>) {
 
   return (
     <main className={className}>
-      {title && <h1 className="text-3xl font-bold mb-8">{title}</h1>}
+      {title && (
+        <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-8">
+          {title}
+        </h1>
+      )}
       {children}
     </main>
   );

@@ -41,6 +41,36 @@ export type Database = {
           },
         ]
       }
+      friends: {
+        Row: {
+          userAId: string
+          userBId: string
+        }
+        Insert: {
+          userAId: string
+          userBId: string
+        }
+        Update: {
+          userAId?: string
+          userBId?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "friends_userAId_fkey"
+            columns: ["userAId"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "friends_userBId_fkey"
+            columns: ["userBId"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       Image: {
         Row: {
           created_at: string
@@ -59,26 +89,60 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          imageUrl: string | null
+          userId: string
+        }
+        Insert: {
+          imageUrl?: string | null
+          userId: string
+        }
+        Update: {
+          imageUrl?: string | null
+          userId?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_userId_fkey"
+            columns: ["userId"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       todos: {
         Row: {
           content: string
           createdAt: string
           id: number
           isCompleted: boolean
+          userId: string
         }
         Insert: {
           content: string
           createdAt?: string
           id?: number
           isCompleted?: boolean
+          userId: string
         }
         Update: {
           content?: string
           createdAt?: string
           id?: number
           isCompleted?: boolean
+          userId?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "todos_userId_fkey"
+            columns: ["userId"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       users: {
         Row: {

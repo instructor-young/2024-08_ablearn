@@ -2,11 +2,20 @@ import { Todo } from "@/schema/todos.schema";
 import supabase from "@/supabase/supabase.client";
 
 async function createTodo(content: string) {
-  await supabase.from("todos").insert({ content });
+  const { data } = await supabase.auth.getUser();
+  const user = data.user!;
+
+  await supabase.from("todos").insert({ content, userId: user.id });
 }
 
 async function getTodos() {
-  const response = await supabase.from("todos").select("*");
+  const { data } = await supabase.auth.getUser();
+  const user = data.user!;
+
+  const response = await supabase
+    .from("todos")
+    .select("*")
+    .eq("userId", user.id);
   const todos = response.data;
 
   if (!todos) return [];

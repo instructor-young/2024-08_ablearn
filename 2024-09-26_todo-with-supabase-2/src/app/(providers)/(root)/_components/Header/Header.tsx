@@ -20,9 +20,12 @@ function Header() {
 
       {isAuthInitialized &&
         (isLoggedIn ? (
-          <button onClick={handleClickLogOut} className="ml-auto">
-            로그아웃
-          </button>
+          <div className="ml-auto">
+            <Link href="/profile" className="mr-4">
+              내 정보
+            </Link>
+            <button onClick={handleClickLogOut}>로그아웃</button>
+          </div>
         ) : (
           <div className="ml-auto">
             <Link href="/log-in" className="mr-4">
